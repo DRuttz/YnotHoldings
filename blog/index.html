@@ -10,23 +10,34 @@
   <!-- Header Injection -->
   <div id="header-container"></div>
 
-  <main class="container mx-auto px-4 py-12 max-w-5xl">
+  <main class="max-w-3xl mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold text-blue-600 mb-8">Our Blog</h1>
     
-    <!-- Search Bar -->
-    <div class="mb-8">
-      <input 
-        type="text" 
-        id="search-input" 
-        placeholder="Search posts..." 
-        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-      >
-    </div>
+    <!-- Blog Post Listing -->
+    <div class="space-y-8">
+      <!-- Post 1 -->
+      <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <h2 class="text-2xl font-bold mb-2">
+          <a href="/YNotHoldings/blog/post-1.html" class="hover:text-blue-600">
+            Why We Started YNot Holdings
+          </a>
+        </h2>
+        <p class="text-gray-500 mb-3">Published: February 20, 2024</p>
+        <p class="text-gray-700 mb-4">Discover the story behind our company's founding and mission...</p>
+        <a href="/YNotHoldings/blog/post-1.html" class="text-blue-600 hover:underline">Read more →</a>
+      </article>
 
-    <!-- Blog Posts Container -->
-    <div id="blog-posts" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Posts load here dynamically -->
-      <p class="text-gray-500">Loading posts...</p>
+      <!-- Post 2 -->
+      <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <h2 class="text-2xl font-bold mb-2">
+          <a href="/YNotHoldings/blog/post-2.html" class="hover:text-blue-600">
+            Latest Company Updates
+          </a>
+        </h2>
+        <p class="text-gray-500 mb-3">Published: February 15, 2024</p>
+        <p class="text-gray-700 mb-4">News about our recent projects and community initiatives...</p>
+        <a href="/YNotHoldings/blog/post-2.html" class="text-blue-600 hover:underline">Read more →</a>
+      </article>
     </div>
   </main>
 
@@ -34,80 +45,27 @@
   <div id="footer-container"></div>
 
   <script>
-    // Load Header/Footer (same as other pages)
+    // Load Header/Footer
     document.addEventListener("DOMContentLoaded", function() {
+      // Load Header
       fetch('/YNotHoldings/header.html')
         .then(res => res.text())
         .then(data => {
           document.getElementById('header-container').innerHTML = data;
           initMobileMenu();
-        });
+        })
+        .catch(err => console.error("Header error:", err));
 
+      // Load Footer
       fetch('/YNotHoldings/footer.html')
         .then(res => res.text())
         .then(data => {
           document.getElementById('footer-container').innerHTML = data;
-        });
-
-      // Load Blog Posts
-      fetchBlogPosts();
+        })
+        .catch(err => console.error("Footer error:", err));
     });
 
-    // Fetch posts from JSON
-    function fetchBlogPosts() {
-      fetch('/YNotHoldings/data/blog-posts.json')
-        .then(res => res.json())
-        .then(posts => {
-          renderPosts(posts);
-          setupSearch(posts);
-        })
-        .catch(err => {
-          console.error("Error loading posts:", err);
-          document.getElementById('blog-posts').innerHTML = 
-            '<p class="text-red-500">Failed to load posts. Refresh or try later.</p>';
-        });
-    }
-
-    // Render all posts
-    function renderPosts(posts) {
-      const container = document.getElementById('blog-posts');
-      if (posts.length === 0) {
-        container.innerHTML = '<p class="text-gray-500">No posts yet. Check back soon!</p>';
-        return;
-      }
-
-      container.innerHTML = posts.map(post => `
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-          <div class="p-6">
-            <h2 class="text-xl font-bold mb-2">${post.title}</h2>
-            <p class="text-gray-600 mb-2">
-              <span>${post.date}</span> • <span>${post.author}</span>
-            </p>
-            <p class="text-gray-700 mb-4 line-clamp-3">${post.content}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              ${post.tags.map(tag => `<span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">${tag}</span>`).join('')}
-            </div>
-            <a href="#" class="text-blue-600 hover:underline">Read More</a>
-          </div>
-        </article>
-      `).join('');
-    }
-
-    // Search functionality
-    function setupSearch(allPosts) {
-      const searchInput = document.getElementById('search-input');
-      searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = allPosts.filter(post => 
-          post.title.toLowerCase().includes(term) || 
-          post.content.toLowerCase().includes(term) ||
-          post.tags.some(tag => tag.toLowerCase().includes(term))
-        );
-        renderPosts(filtered);
-      });
-    }
-
-    // Mobile menu (same as other pages)
+    // Mobile Menu Toggle
     function initMobileMenu() {
       const menuBtn = document.getElementById('menu-btn');
       const closeBtn = document.getElementById('close-btn');
@@ -117,16 +75,19 @@
       if (menuBtn) menuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('-translate-x-full');
         overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
       });
 
       if (closeBtn) closeBtn.addEventListener('click', () => {
         mobileMenu.classList.add('-translate-x-full');
         overlay.classList.add('hidden');
+        document.body.style.overflow = '';
       });
 
       if (overlay) overlay.addEventListener('click', () => {
         mobileMenu.classList.add('-translate-x-full');
         overlay.classList.add('hidden');
+        document.body.style.overflow = '';
       });
     }
   </script>
