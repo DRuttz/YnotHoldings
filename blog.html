@@ -3,34 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - YNot Holdings</title>
+  <title>Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
   <div id="header-placeholder"></div>
   <script>
     fetch("header.html")
       .then(response => response.text())
       .then(data => document.getElementById("header-placeholder").innerHTML = data);
   </script>
-  <div class="max-w-5xl mx-auto px-4 py-16">
-    <h2 class="text-2xl font-semibold mb-4">Company Blog</h2>
-    <div class="space-y-6">
-      <article class="bg-white p-6 rounded shadow">
-        <h3 class="text-xl font-bold mb-2">Welcome to the YNot Blog</h3>
-        <p class="text-gray-600">June 2025</p>
-        <p class="mt-2 text-gray-700">We are excited to launch our blog to keep our partners, investors, and customers updated with news, insights, and innovations from across our subsidiaries.</p>
-      </article>
-    </div>
-  </div>
-</body>
-<footer>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-blue-600 mb-6">Blog</h1>
+    <p>Welcome to the Blog page of YNot Holdings.</p>
+  </main>
+
+  
   <div id="footer-placeholder"></div>
   <script>
     fetch("footer.html")
       .then(response => response.text())
       .then(data => document.getElementById("footer-placeholder").innerHTML = data);
   </script>
-</footer>
+
+</body>
 </html>
