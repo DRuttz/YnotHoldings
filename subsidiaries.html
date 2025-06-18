@@ -55,37 +55,31 @@
   <div id="footer-container"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch('header.html')
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById('header-container').innerHTML = data;
-          const menuBtn = document.getElementById('menu-btn');
-          const closeBtn = document.getElementById('close-btn');
-          const mobileMenu = document.getElementById('mobile-menu');
-          const overlay = document.getElementById('overlay');
+  document.addEventListener("DOMContentLoaded", function () {
+    // Load header with absolute path
+    fetch('/YNotHoldings/header.html')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load header');
+        return res.text();
+      })
+      .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+        // Menu button code...
+      })
+      .catch(err => console.error('Header error:', err));
 
-          function openMenu() {
-            mobileMenu.classList.remove('-translate-x-full');
-            overlay.classList.remove('hidden');
-          }
-
-          function closeMenu() {
-            mobileMenu.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-          }
-
-          menuBtn?.addEventListener('click', openMenu);
-          closeBtn?.addEventListener('click', closeMenu);
-          overlay?.addEventListener('click', closeMenu);
-        });
-
-      fetch('footer.html')
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById('footer-container').innerHTML = data;
-        });
-  </script>
+    // Load footer with absolute path
+    fetch('/YNotHoldings/footer.html')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load footer');
+        return res.text();
+      })
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      })
+      .catch(err => console.error('Footer error:', err));
+  });
+</script>
 
 </body>
 </html>
