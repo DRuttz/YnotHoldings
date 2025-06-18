@@ -56,7 +56,7 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Load header with absolute path
+    // Load header
     fetch('/YNotHoldings/header.html')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load header');
@@ -64,11 +64,11 @@
       })
       .then(data => {
         document.getElementById('header-container').innerHTML = data;
-        // Menu button code...
+        initializeMobileMenu(); // Call this after header loads
       })
       .catch(err => console.error('Header error:', err));
 
-    // Load footer with absolute path
+    // Load footer
     fetch('/YNotHoldings/footer.html')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load footer');
@@ -78,6 +78,36 @@
         document.getElementById('footer-container').innerHTML = data;
       })
       .catch(err => console.error('Footer error:', err));
+
+    // Mobile menu initialization function
+    function initializeMobileMenu() {
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+
+      function openMenu() {
+        mobileMenu.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+
+      if (menuBtn) menuBtn.addEventListener('click', openMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+      if (overlay) overlay.addEventListener('click', closeMenu);
+
+      // Close menu when clicking on navigation links
+      const navLinks = document.querySelectorAll('#mobile-menu a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
   });
 </script>
 
