@@ -10,46 +10,82 @@
 
   <div id="header-container"></div>
 
-  <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">Subsidiaries</h1>
-    <p>Welcome to the Subsidiaries page of YNot Holdings.</p>
+  <main class="flex-grow max-w-5xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-blue-600 mb-6">Our Subsidiaries</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Company 1 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <img src="https://source.unsplash.com/600x400/?swimming,pool,gym" alt="BlueWave Leisure" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-2xl font-semibold text-gray-800">BlueWave Leisure</h2>
+          <p class="text-gray-600 mt-2">
+            A modern pool and sports hall providing premium recreational facilities and classes to the community.
+          </p>
+          <a href="https://placeholder-link.com/bluewave" class="text-blue-600 hover:underline mt-2 inline-block">Visit Website</a>
+        </div>
+      </div>
+
+      <!-- Company 2 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <img src="https://source.unsplash.com/600x400/?poker,cards,casino" alt="YNot Poker League" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-2xl font-semibold text-gray-800">YNot Poker League</h2>
+          <p class="text-gray-600 mt-2">
+            An exciting poker league organizing regular tournaments and competitive events across the UK.
+          </p>
+          <a href="https://placeholder-link.com/pokerleague" class="text-blue-600 hover:underline mt-2 inline-block">Visit Website</a>
+        </div>
+      </div>
+
+      <!-- Company 3 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden md:col-span-2">
+        <img src="https://source.unsplash.com/1200x400/?repair,tools,fixing" alt="FixIt Solutions" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-2xl font-semibold text-gray-800">FixIt Solutions</h2>
+          <p class="text-gray-600 mt-2">
+            A fast and reliable repairs company offering home, auto, and electronics repair services.
+          </p>
+          <a href="https://placeholder-link.com/fixit" class="text-blue-600 hover:underline mt-2 inline-block">Visit Website</a>
+        </div>
+      </div>
+    </div>
   </main>
 
   <div id="footer-container"></div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header-container').innerHTML = data;
-      const menuBtn = document.getElementById('menu-btn');
-      const closeBtn = document.getElementById('close-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const overlay = document.getElementById('overlay');
 
-      function openMenu() {
-        mobileMenu.classList.remove('-translate-x-full');
-        overlay.classList.remove('hidden');
-      }
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+          const menuBtn = document.getElementById('menu-btn');
+          const closeBtn = document.getElementById('close-btn');
+          const mobileMenu = document.getElementById('mobile-menu');
+          const overlay = document.getElementById('overlay');
 
-      function closeMenu() {
-        mobileMenu.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
-      }
+          function openMenu() {
+            mobileMenu.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+          }
 
-      menuBtn?.addEventListener('click', openMenu);
-      closeBtn?.addEventListener('click', closeMenu);
-      overlay?.addEventListener('click', closeMenu);
-    });
+          function closeMenu() {
+            mobileMenu.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+          }
 
-  fetch('footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
-});
-</script>
+          menuBtn?.addEventListener('click', openMenu);
+          closeBtn?.addEventListener('click', closeMenu);
+          overlay?.addEventListener('click', closeMenu);
+        });
+
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        });
+  </script>
 
 </body>
 </html>
