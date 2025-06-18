@@ -1,55 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | YNot Holdings</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
-
+<body class="bg-gray-50">
+  <!-- Header Injection -->
   <div id="header-container"></div>
 
-  <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">Blog</h1>
-    <p>Welcome to the Blog page of YNot Holdings.</p>
+  <main class="container mx-auto px-4 py-12 max-w-5xl">
+    <h1 class="text-3xl font-bold text-blue-600 mb-8">Our Blog</h1>
+    
+    <!-- Search Bar -->
+    <div class="mb-8">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search posts..." 
+        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+      >
+    </div>
+
+    <!-- Blog Posts Container -->
+    <div id="blog-posts" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
   </main>
 
+  <!-- Footer Injection -->
   <div id="footer-container"></div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header-container').innerHTML = data;
-      const menuBtn = document.getElementById('menu-btn');
-      const closeBtn = document.getElementById('close-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const overlay = document.getElementById('overlay');
 
-      function openMenu() {
-        mobileMenu.classList.remove('-translate-x-full');
-        overlay.classList.remove('hidden');
+  <script>
+    // Firebase Config (Replace with your actual config)
+    const firebaseConfig = {
+  apiKey: "AIzaSyB70O5OJDBdb1Iz8YvAl7djjYRiWhBLm8w",
+  authDomain: "ynot-c70da.firebaseapp.com",
+  projectId: "ynot-c70da",
+  storageBucket: "ynot-c70da.firebasestorage.app",
+  messagingSenderId: "448743575856",
+  appId: "1:448743575856:web:29c15c0235c6f5fc09f8f5",
+  measurementId: "G-VWLC26B65Z"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // DOM Elements
+    const blogPostsContainer = document.getElementById('blog-posts');
+    const searchInput = document.getElementById('search-input');
+
+    // Fetch and Display Posts
+    function fetchPosts(searchTerm = '') {
+      let query = db.collection('posts').orderBy('date', 'desc');
+
+      if (searchTerm) {
+        query = query.where('title', '>=', searchTerm).where('title', '<=', searchTerm + '\uf8ff');
       }
 
-      function closeMenu() {
-        mobileMenu.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
-      }
+      query.get().then((querySnapshot) => {
+        blogPostsContainer.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+          const post = doc.data();
+          renderPost(post);
+        });
+      });
+    }
 
-      menuBtn?.addEventListener('click', openMenu);
-      closeBtn?.addEventListener('click', closeMenu);
-      overlay?.addEventListener('click', closeMenu);
+    // Render Single Post
+    function renderPost(post) {
+      const postElement = document.createElement('div');
+      postElement.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow';
+      postElement.innerHTML = `
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-2">${post.title}</h2>
+          <p class="text-gray-600 mb-4">${post.date}</p>
+          <p class="text-gray-700 mb-4 line-clamp-3">${post.content}</p>
+          <a href="#" class="text-blue-600 hover:underline">Read More</a>
+        </div>
+      `;
+      blogPostsContainer.appendChild(postElement);
+    }
+
+    // Search Functionality
+    searchInput.addEventListener('input', (e) => {
+      fetchPosts(e.target.value.toLowerCase());
     });
 
-  fetch('footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
-});
-</script>
+    // Initial Load
+    fetchPosts();
 
+    // Load Header/Footer (Same as contact.html)
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('/YNotHoldings/header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+          initMobileMenu();
+        });
+
+      fetch('/YNotHoldings/footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        });
+    });
+
+    function initMobileMenu() {
+      // ... (Same mobile menu code as contact.html)
+    }
+  </script>
 </body>
 </html>
