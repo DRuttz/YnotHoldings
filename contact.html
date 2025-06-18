@@ -3,53 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact</title>
+  <title>Contact Us | YNot Holdings</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
 
+  <!-- Header Injection Point -->
   <div id="header-container"></div>
 
-  <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">Contact</h1>
-    <p>Welcome to the Contact page of YNot Holdings.</p>
+  <!-- Main Content -->
+  <main class="flex-grow max-w-5xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-blue-600 mb-6">Contact Us</h1>
+    
+    <!-- Contact Form (Formspree) -->
+    <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6 max-w-lg mx-auto">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name*</label>
+        <input type="text" id="name" name="name" required 
+               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email*</label>
+        <input type="email" id="email" name="email" required 
+               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700">Message*</label>
+        <textarea id="message" name="message" rows="4" required 
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+      </div>
+      <button type="submit" 
+              class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        Send Message
+      </button>
+    </form>
+
+    <!-- Form Submission Response -->
+    <div id="form-response" class="mt-4 p-4 hidden rounded-md"></div>
   </main>
 
+  <!-- Footer Injection Point -->
   <div id="footer-container"></div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header-container').innerHTML = data;
+
+  <!-- Scripts -->
+  <script>
+    // Load Header/Footer and Initialize Mobile Menu
+    document.addEventListener("DOMContentLoaded", function() {
+      // Load Header
+      fetch('/YNotHoldings/header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+          initMobileMenu();
+        })
+        .catch(err => console.error("Header error:", err));
+
+      // Load Footer
+      fetch('/YNotHoldings/footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(err => console.error("Footer error:", err));
+
+      // Form Submission Handling
+      const contactForm = document.getElementById('contact-form');
+      const formResponse = document.getElementById('form-response');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          formResponse.classList.add('hidden');
+
+          fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(response => {
+            if (response.ok) {
+              formResponse.textContent = '✅ Message sent! We\'ll reply soon.';
+              formResponse.classList.remove('bg-red-50');
+              formResponse.classList.add('bg-green-50');
+              contactForm.reset();
+            } else {
+              throw new Error('Form submission failed');
+            }
+          })
+          .catch(() => {
+            formResponse.textContent = '❌ Failed to send. Please email us directly.';
+            formResponse.classList.remove('bg-green-50');
+            formResponse.classList.add('bg-red-50');
+          })
+          .finally(() => {
+            formResponse.classList.remove('hidden');
+          });
+        });
+      }
+    });
+
+    // Mobile Menu Toggle
+    function initMobileMenu() {
       const menuBtn = document.getElementById('menu-btn');
       const closeBtn = document.getElementById('close-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const overlay = document.getElementById('overlay');
 
-      function openMenu() {
+      if (menuBtn) menuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('-translate-x-full');
         overlay.classList.remove('hidden');
-      }
+        document.body.style.overflow = 'hidden';
+      });
 
-      function closeMenu() {
+      if (closeBtn) closeBtn.addEventListener('click', () => {
         mobileMenu.classList.add('-translate-x-full');
         overlay.classList.add('hidden');
-      }
+        document.body.style.overflow = '';
+      });
 
-      menuBtn?.addEventListener('click', openMenu);
-      closeBtn?.addEventListener('click', closeMenu);
-      overlay?.addEventListener('click', closeMenu);
-    });
-
-  fetch('footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
-});
-</script>
-
+      if (overlay) overlay.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    }
+  </script>
 </body>
 </html>
