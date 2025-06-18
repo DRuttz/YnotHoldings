@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
-  <div id="header-placeholder"></div>
-  <script>
-    fetch("header.html")
-      .then(response => response.text())
-      .then(data => document.getElementById("header-placeholder").innerHTML = data);
-  </script>
+
+  <div id="header-container"></div>
 
   <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
     <h1 class="text-3xl font-bold text-blue-600 mb-6">About</h1>
     <p>Welcome to the About page of YNot Holdings.</p>
   </main>
 
+  <div id="footer-container"></div>
   
-  <div id="footer-placeholder"></div>
-  <script>
-    fetch("footer.html")
-      .then(response => response.text())
-      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
-  </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header-container').innerHTML = data;
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+
+      function openMenu() {
+        mobileMenu.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
+
+      menuBtn?.addEventListener('click', openMenu);
+      closeBtn?.addEventListener('click', closeMenu);
+      overlay?.addEventListener('click', closeMenu);
+    });
+
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+    });
+});
+</script>
 
 </body>
 </html>

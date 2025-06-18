@@ -1,17 +1,12 @@
 
-<!-- header.html -->
 <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
   <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-blue-600">YNot Holdings</h1>
-    <!-- Hamburger Icon -->
     <button id="menu-btn" class="md:hidden focus:outline-none">
-      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
-           viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M4 6h16M4 12h16M4 18h16" />
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
-    <!-- Desktop Menu -->
     <nav class="hidden md:flex space-x-4">
       <a href="index.html" class="text-gray-700 hover:text-blue-500">Home</a>
       <a href="about.html" class="text-gray-700 hover:text-blue-500">About</a>
@@ -20,17 +15,11 @@
       <a href="contact.html" class="text-gray-700 hover:text-blue-500">Contact</a>
     </nav>
   </div>
-
-  <!-- Overlay -->
   <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
-
-  <!-- Mobile Side Menu -->
   <div id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-md transform -translate-x-full transition-transform duration-300 z-50">
     <div class="p-4 border-b flex justify-between items-center">
       <span class="text-xl font-bold text-blue-600">Menu</span>
-      <button id="close-btn" class="text-gray-600 hover:text-red-500 text-2xl">
-        ✕
-      </button>
+      <button id="close-btn" class="text-gray-600 hover:text-red-500 text-2xl">✕</button>
     </div>
     <nav class="flex flex-col p-4 space-y-4">
       <a href="index.html" class="text-gray-700 hover:text-blue-500">Home</a>
@@ -41,27 +30,4 @@
     </nav>
   </div>
 </header>
-
-<!-- Space for fixed header -->
 <div class="h-20"></div>
-
-<script>
-  const menuBtn = document.getElementById('menu-btn');
-  const closeBtn = document.getElementById('close-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('overlay');
-
-  function openMenu() {
-    mobileMenu.classList.remove('-translate-x-full');
-    overlay.classList.remove('hidden');
-  }
-
-  function closeMenu() {
-    mobileMenu.classList.add('-translate-x-full');
-    overlay.classList.add('hidden');
-  }
-
-  menuBtn?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  overlay?.addEventListener('click', closeMenu);
-</script>
