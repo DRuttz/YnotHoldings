@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why We Started YNot Holdings | Blog</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <!-- Header Injection -->
+  <div id="header-container"></div>
+
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <article class="bg-white p-6 rounded-lg shadow-md">
+      <!-- Back button -->
+      <a href="index.html" class="inline-block mb-6 text-blue-600 hover:underline">← Back to Blog</a>
+      
+      <!-- Post content -->
+      <h1 class="text-3xl font-bold mb-4">Why We Started YNot Holdings</h1>
+      <p class="text-gray-500 mb-8">Published: February 20, 2024</p>
+      
+      <div class="prose max-w-none">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris...</p>
+        <!-- More paragraphs -->
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer Injection -->
+  <div id="footer-container"></div>
+
+  <script>
+    // Same header/footer loader as index.html
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('/YNotHoldings/header.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('header-container').innerHTML = data);
+
+      fetch('/YNotHoldings/footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer-container').innerHTML = data);
+    });
+  </script>
+</body>
+</html>
