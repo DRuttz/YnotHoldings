@@ -24,8 +24,11 @@
     <h2 class="text-4xl font-bold mb-4">Empowering Innovation. Backing Visionaries.</h2>
     <p class="text-lg">YNot Holdings supports bold ventures and sustainable growth across diverse industries.</p>
   </section>
-  <footer class="bg-gray-800 text-white text-center py-6">
-    <p>&copy; 2025 YNot Holdings. All rights reserved.</p>
-  </footer>
+ <div id="footer-placeholder"></div>
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+  </script>
 </body>
 </html>
