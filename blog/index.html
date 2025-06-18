@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | YNot Holdings</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensures the page takes at least the full viewport height */
+    html, body {
+      height: 100%;
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 flex flex-col min-h-screen">
   <!-- Header Injection -->
   <div id="header-container"></div>
 
-  <main class="max-w-3xl mx-auto px-4 py-12">
+  <!-- Main Content (flex-grow takes available space) -->
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-12 w-full">
     <h1 class="text-3xl font-bold text-blue-600 mb-8">Our Blog</h1>
     
     <!-- Blog Post Listing -->
@@ -41,8 +48,8 @@
     </div>
   </main>
 
-  <!-- Footer Injection -->
-  <div id="footer-container"></div>
+  <!-- Footer (mt-auto pushes it down) -->
+  <div id="footer-container" class="mt-auto"></div>
 
   <script>
     // Load Header/Footer
