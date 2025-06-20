@@ -5,20 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | YNot Holdings</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .highlight {
+      background-color: #FFFB8F;
+      padding: 0.1rem 0.2rem;
+      border-radius: 0.25rem;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
   <!-- Header -->
   <div id="header-container"></div>
 
-  <!-- Blog Posts (loaded dynamically) -->
+  <!-- Blog Content -->
   <main class="flex-grow max-w-3xl mx-auto px-4 py-12 w-full">
     <h1 class="text-3xl font-bold text-blue-600 mb-8">Our Blog</h1>
+    
+    <!-- Search Bar -->
+    <div class="mb-8 relative">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search posts..." 
+        class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+      >
+      <svg class="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </div>
+
+    <!-- Posts Container -->
     <div id="blog-posts" class="space-y-8">
-      <!-- Posts load here -->
+      <!-- Loading indicator -->
       <div class="text-center py-12">
         <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
         <p class="mt-4 text-gray-600">Loading posts...</p>
       </div>
+    </div>
+
+    <!-- No Results Message (hidden by default) -->
+    <div id="no-results" class="hidden text-center py-12">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <h3 class="mt-2 text-lg font-medium text-gray-900">No posts found</h3>
+      <p class="mt-1 text-gray-500">Try different search terms</p>
     </div>
   </main>
 
@@ -26,6 +57,9 @@
   <div id="footer-container" class="mt-auto"></div>
 
   <script>
+    // Global variable to store all posts
+    let allPosts = [];
+
     // Load Header/Footer
     document.addEventListener("DOMContentLoaded", function() {
       fetch('/YNotHoldings/header.html')
@@ -45,14 +79,18 @@
       fetchPosts();
     });
 
-    // Fetch and display posts
+    // Fetch posts from JSON
     function fetchPosts() {
       fetch('/YNotHoldings/data/blog-posts.json')
         .then(res => res.json())
         .then(posts => {
-          renderPosts(posts.sort((a, b) => new Date(b.date) - new Date(a.date)));
+          // Store posts globally and sort by date (newest first)
+          allPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+          renderPosts(allPosts);
+          setupSearch();
         })
         .catch(err => {
+          console.error("Error loading posts:", err);
           document.getElementById('blog-posts').innerHTML = `
             <div class="bg-red-50 p-6 rounded-lg">
               <h2 class="text-xl font-bold text-red-600">Error</h2>
@@ -62,15 +100,18 @@
         });
     }
 
-    // Render all posts
+    // Render posts to the page
     function renderPosts(posts) {
       const container = document.getElementById('blog-posts');
+      const noResults = document.getElementById('no-results');
       
       if (!posts || posts.length === 0) {
-        container.innerHTML = '<p class="text-gray-500">No posts yet. Check back soon!</p>';
+        container.innerHTML = '';
+        noResults.classList.remove('hidden');
         return;
       }
 
+      noResults.classList.add('hidden');
       container.innerHTML = posts.map(post => `
         <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
           <h2 class="text-2xl font-bold mb-2">
@@ -80,6 +121,11 @@
           </h2>
           <p class="text-gray-500 mb-3">Published: ${post.date}</p>
           <p class="text-gray-700 mb-4">${post.excerpt}</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${post.tags.map(tag => `
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">${tag}</span>
+            `).join('')}
+          </div>
           <a href="/YNotHoldings/blog/post.html?id=${post.slug}" class="text-blue-600 hover:underline">
             Read more →
           </a>
@@ -87,9 +133,66 @@
       `).join('');
     }
 
+    // Setup search functionality
+    function setupSearch() {
+      const searchInput = document.getElementById('search-input');
+      
+      searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        if (!term) {
+          renderPosts(allPosts);
+          return;
+        }
+
+        // Filter posts by title, excerpt, or tags
+        const filtered = allPosts.filter(post => 
+          post.title.toLowerCase().includes(term) ||
+          post.excerpt.toLowerCase().includes(term) ||
+          post.tags.some(tag => tag.toLowerCase().includes(term))
+        );
+
+        // Highlight matching text in results
+        if (filtered.length > 0) {
+          const highlightedPosts = filtered.map(post => ({
+            ...post,
+            title: highlightText(post.title, term),
+            excerpt: highlightText(post.excerpt, term)
+          }));
+          renderPosts(highlightedPosts);
+        } else {
+          renderPosts([]);
+        }
+      });
+    }
+
+    // Highlight search terms in text
+    function highlightText(text, term) {
+      if (!term) return text;
+      const regex = new RegExp(`(${term})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
     // Mobile menu (same as before)
     function initMobileMenu() {
-      // ... (same mobile menu code)
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+
+      if (menuBtn) menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      });
+
+      if (overlay) overlay.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      });
     }
   </script>
 </body>
