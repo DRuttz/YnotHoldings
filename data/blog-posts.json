@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "slug": "why-we-started",
+    "title": "Why We Started YNot Holdings",
+    "date": "2024-02-20",
+    "author": "Admin",
+    "content": "<p>When we founded YNot Holdings in 2015, our goal was simple...</p><p>We wanted to challenge the status quo.</p>",
+    "excerpt": "Discover the story behind our company's founding and mission...",
+    "tags": ["business", "about"]
+  },
+  {
+    "id": 2,
+    "slug": "latest-updates",
+    "title": "Latest Company Updates",
+    "date": "2024-02-15",
+    "author": "Team",
+    "content": "<p>Here's what we've been working on recently...</p>",
+    "excerpt": "News about our recent projects and community initiatives...",
+    "tags": ["news", "updates"]
+  }
+]
