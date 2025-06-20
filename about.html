@@ -5,28 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us | YNot Holdings</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ynot-green': '#0a5c36',
+            'ynot-amber': '#92400e',
+            'ynot-green-light': '#f0f7f3',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-ynot-green-light flex flex-col min-h-screen">
   <!-- Header Injection -->
   <div id="header-container"></div>
 
   <!-- Main Content -->
   <main class="flex-grow">
     <!-- Hero Section -->
-    <section class="py-12 bg-gray-50">
+    <section class="py-16 bg-gradient-to-r from-ynot-green to-ynot-amber">
       <div class="max-w-5xl mx-auto px-4">
-        <h1 class="text-3xl font-bold text-blue-600 mb-4">About YNot Holdings</h1>
-        <p class="text-xl text-gray-600 max-w-3xl">
+        <h1 class="text-4xl font-bold text-white mb-4">About YNot Holdings</h1>
+        <p class="text-xl text-green-100 max-w-3xl">
           Bringing communities together.
         </p>
       </div>
     </section>
 
     <!-- Our Story -->
-    <section class="py-12 max-w-5xl mx-auto px-4">
+    <section class="py-16 max-w-5xl mx-auto px-4">
       <div class="md:flex gap-12 items-center">
         <div class="md:w-1/2 mb-8 md:mb-0">
-          <h2 class="text-2xl font-bold mb-6 text-gray-800">Our Story</h2>
+          <h2 class="text-3xl font-bold mb-6 text-ynot-green">Our Story</h2>
           <div class="prose text-gray-700">
             <p>Founded in 2015, YNot Holdings began as a small investment group with a big vision. We saw opportunities where others saw obstacles, asking "Why not?" when faced with challenges.</p>
             <p class="mt-4">Today, we oversee a diverse portfolio of businesses across leisure, gaming, and service industries, each sharing our commitment to excellence and innovation.</p>
@@ -35,37 +48,37 @@
         <div class="md:w-1/2">
           <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
                alt="Our team working together"
-               class="rounded-lg shadow-xl w-full h-auto">
+               class="rounded-lg shadow-xl w-full h-auto border-t-4 border-ynot-amber">
         </div>
       </div>
     </section>
 
     <!-- Values -->
-    <section class="py-12 bg-gray-100">
+    <section class="py-16 bg-gray-100">
       <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-8 text-gray-800">Our Values</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-bold mb-3 flex items-center text-gray-800">
-              <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <h2 class="text-3xl font-bold mb-12 text-center text-ynot-green">Our Values</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-ynot-amber">
+            <h3 class="text-xl font-bold mb-4 flex items-center text-ynot-green">
+              <svg class="w-6 h-6 text-ynot-amber mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
               Innovation
             </h3>
             <p class="text-gray-600">We constantly seek better ways to serve our customers and improve our businesses.</p>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-bold mb-3 flex items-center text-gray-800">
-              <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-ynot-amber">
+            <h3 class="text-xl font-bold mb-4 flex items-center text-ynot-green">
+              <svg class="w-6 h-6 text-ynot-amber mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15l8-8m0 0l-8-8m8 8H4"></path>
               </svg>
               Growth
             </h3>
             <p class="text-gray-600">We invest in our people and businesses to create sustainable, long-term success.</p>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-bold mb-3 flex items-center text-gray-800">
-              <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="bg-white p-8 rounded-xl shadow-md border-t-4 border-ynot-amber">
+            <h3 class="text-xl font-bold mb-4 flex items-center text-ynot-green">
+              <svg class="w-6 h-6 text-ynot-amber mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
               </svg>
               Community
@@ -77,26 +90,26 @@
     </section>
 
     <!-- Leadership -->
-    <section class="py-12 max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl font-bold mb-8 text-gray-800">Leadership</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-md flex items-start">
+    <section class="py-16 max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center text-ynot-green">Leadership</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-ynot-amber flex items-start">
           <img src="https://randomuser.me/api/portraits/men/32.jpg" 
                alt="Paul Giff"
-               class="w-16 h-16 rounded-full mr-4">
+               class="w-16 h-16 rounded-full mr-4 border-2 border-ynot-amber">
           <div>
-            <h3 class="text-lg font-bold text-gray-800">Paul Giff</h3>
-            <p class="text-blue-600 mb-2">Founder</p>
+            <h3 class="text-lg font-bold text-ynot-green">Paul Giff</h3>
+            <p class="text-ynot-amber mb-2 font-medium">Founder</p>
             <p class="text-gray-600">With 20+ years in business development, Paul leads our strategic vision.</p>
           </div>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-md flex items-start">
+        <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-ynot-amber flex items-start">
           <img src="https://randomuser.me/api/portraits/women/44.jpg" 
                alt="Tony Rutter"
-               class="w-16 h-16 rounded-full mr-4">
+               class="w-16 h-16 rounded-full mr-4 border-2 border-ynot-amber">
           <div>
-            <h3 class="text-lg font-bold text-gray-800">Tony Rutter</h3>
-            <p class="text-blue-600 mb-2">Founder</p>
+            <h3 class="text-lg font-bold text-ynot-green">Tony Rutter</h3>
+            <p class="text-ynot-amber mb-2 font-medium">Founder</p>
             <p class="text-gray-600">Tony oversees daily operations across all our subsidiaries.</p>
           </div>
         </div>
