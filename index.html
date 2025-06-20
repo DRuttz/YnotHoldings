@@ -1,55 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YNot Holdings - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
-
+<body class="bg-gray-50 flex flex-col min-h-screen">
+  <!-- Header Injection -->
   <div id="header-container"></div>
 
-  <main class="flex-grow max-w-4xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">Home</h1>
-    <p>Welcome to the Home page of YNot Holdings.</p>
+  <!-- Hero Section -->
+  <main class="flex-grow">
+    <section class="bg-blue-600 text-white py-20">
+      <div class="max-w-5xl mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Innovative Business Solutions</h1>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          Driving growth across our network of subsidiaries in leisure, gaming, and repair services.
+        </p>
+        <div class="flex justify-center gap-4">
+          <a href="/YNotHoldings/about.html" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">
+            Learn About Us
+          </a>
+          <a href="/YNotHoldings/blog/" class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition">
+            Read Our Blog
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subsidiaries Preview -->
+    <section class="py-16 max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Subsidiaries</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- BlueWave Leisure -->
+        <div class="bg-white p-6 rounded-xl shadow-md text-center">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">BlueWave Leisure</h3>
+          <p class="text-gray-600 mb-4">Premium recreational facilities including pools and sports halls.</p>
+          <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+        </div>
+
+        <!-- YNot Poker League -->
+        <div class="bg-white p-6 rounded-xl shadow-md text-center">
+          <div class="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">YNot Poker League</h3>
+          <p class="text-gray-600 mb-4">Exciting poker tournaments across the UK.</p>
+          <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+        </div>
+
+        <!-- FixIt Solutions -->
+        <div class="bg-white p-6 rounded-xl shadow-md text-center">
+          <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">FixIt Solutions</h3>
+          <p class="text-gray-600 mb-4">Reliable repair services for homes and businesses.</p>
+          <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Blog Posts -->
+    <section class="py-16 bg-gray-100">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">From Our Blog</h2>
+        <div id="blog-preview" class="grid md:grid-cols-2 gap-8">
+          <!-- Will be filled by JavaScript -->
+          <div class="text-center py-12">
+            <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+            <p class="mt-4 text-gray-600">Loading posts...</p>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/YNotHoldings/blog/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+            View All Posts
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <div id="footer-container"></div>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header-container').innerHTML = data;
+  <!-- Footer Injection -->
+  <div id="footer-container" class="mt-auto"></div>
+
+  <script>
+    // Load Header/Footer
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('/YNotHoldings/header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+          initMobileMenu();
+        });
+
+      fetch('/YNotHoldings/footer.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        });
+
+      // Load blog preview
+      fetch('/YNotHoldings/data/blog-posts.json')
+        .then(res => res.json())
+        .then(posts => {
+          const latestPosts = posts
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 2); // Show 2 latest posts
+
+          document.getElementById('blog-preview').innerHTML = latestPosts.map(post => `
+            <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="text-xl font-bold mb-2">
+                <a href="/YNotHoldings/blog/post.html?id=${post.slug}" class="hover:text-blue-600">
+                  ${post.title}
+                </a>
+              </h3>
+              <p class="text-gray-500 mb-3">${post.date}</p>
+              <p class="text-gray-700 mb-4 line-clamp-2">${post.excerpt}</p>
+              <a href="/YNotHoldings/blog/post.html?id=${post.slug}" class="text-blue-600 hover:underline">
+                Read more →
+              </a>
+            </article>
+          `).join('');
+        })
+        .catch(err => {
+          document.getElementById('blog-preview').innerHTML = `
+            <div class="bg-red-50 p-6 rounded-lg col-span-2">
+              <p class="text-red-600">Failed to load blog posts. <a href="/YNotHoldings/blog/" class="underline">Visit blog directly</a></p>
+            </div>
+          `;
+        });
+    });
+
+    function initMobileMenu() {
       const menuBtn = document.getElementById('menu-btn');
       const closeBtn = document.getElementById('close-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const overlay = document.getElementById('overlay');
 
-      function openMenu() {
+      if (menuBtn) menuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('-translate-x-full');
         overlay.classList.remove('hidden');
-      }
+      });
 
-      function closeMenu() {
+      if (closeBtn) closeBtn.addEventListener('click', () => {
         mobileMenu.classList.add('-translate-x-full');
         overlay.classList.add('hidden');
-      }
+      });
 
-      menuBtn?.addEventListener('click', openMenu);
-      closeBtn?.addEventListener('click', closeMenu);
-      overlay?.addEventListener('click', closeMenu);
-    });
-
-  fetch('footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    });
-});
-</script>
-
+      if (overlay) overlay.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      });
+    }
+  </script>
 </body>
 </html>
