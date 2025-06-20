@@ -5,13 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YNot Holdings - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pool Table Styles */
+    .pool-table {
+      background-color: #0a5c36; /* Classic tournament green */
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(10,92,54,0.8) 0%, rgba(5,46,27,0.9) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.1) 40px);
+      position: relative;
+      height: 24rem; /* h-96 */
+      overflow: hidden;
+      border-bottom-width: 8px;
+      border-color: #92400e; /* border-amber-800 */
+    }
+    
+    .pool-pocket {
+      width: 5rem; /* 80px */
+      height: 5rem; /* 80px */
+      background: radial-gradient(circle, #111 0%, #000 70%);
+      border-radius: 9999px;
+      position: absolute;
+    }
+    
+    .pool-ball {
+      width: 2.5rem; /* 40px */
+      height: 2.5rem; /* 40px */
+      border-radius: 9999px;
+      position: absolute;
+      box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3);
+    }
+    
+    .text-shadow-lg {
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
   <!-- Header Injection -->
   <div id="header-container"></div>
 
-  <!-- Hero Section -->
-<section class="pool-table relative h-96 overflow-hidden border-b-8 border-amber-800">
+  <!-- Pool Table Hero Section -->
+  <section class="pool-table">
     <!-- Table Outline -->
     <div class="absolute inset-4 border-4 border-amber-700 rounded-lg"></div>
     
@@ -54,67 +88,66 @@
     </div>
   </section>
 
-    <!-- Subsidiaries Preview -->
-    <section class="py-16 max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">Our Subsidiaries</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- BlueWave Leisure -->
-        <div class="bg-white p-6 rounded-xl shadow-md text-center">
-          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">BlueWave Leisure</h3>
-          <p class="text-gray-600 mb-4">Premium recreational facilities including pools and sports halls.</p>
-          <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+  <!-- Subsidiaries Preview -->
+  <section class="py-16 max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Subsidiaries</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- BlueWave Leisure -->
+      <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+          </svg>
         </div>
+        <h3 class="text-xl font-bold mb-2">BlueWave Leisure</h3>
+        <p class="text-gray-600 mb-4">Premium recreational facilities including pools and sports halls.</p>
+        <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+      </div>
 
-        <!-- YNot Poker League -->
-        <div class="bg-white p-6 rounded-xl shadow-md text-center">
-          <div class="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">YNot Poker League</h3>
-          <p class="text-gray-600 mb-4">Exciting poker tournaments across the UK.</p>
-          <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+      <!-- YNot Poker League -->
+      <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <div class="bg-red-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+          </svg>
         </div>
+        <h3 class="text-xl font-bold mb-2">YNot Poker League</h3>
+        <p class="text-gray-600 mb-4">Exciting poker tournaments across the UK.</p>
+        <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+      </div>
 
-        <!-- FixIt Solutions -->
-        <div class="bg-white p-6 rounded-xl shadow-md text-center">
-          <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">FixIt Solutions</h3>
-          <p class="text-gray-600 mb-4">Reliable repair services for homes and businesses.</p>
-          <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+      <!-- FixIt Solutions -->
+      <div class="bg-white p-6 rounded-xl shadow-md text-center">
+        <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">FixIt Solutions</h3>
+        <p class="text-gray-600 mb-4">Reliable repair services for homes and businesses.</p>
+        <a href="/YNotHoldings/subsidiaries.html" class="text-blue-600 hover:underline">Learn more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts -->
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">From Our Blog</h2>
+      <div id="blog-preview" class="grid md:grid-cols-2 gap-8">
+        <!-- Will be filled by JavaScript -->
+        <div class="text-center py-12">
+          <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+          <p class="mt-4 text-gray-600">Loading posts...</p>
         </div>
       </div>
-    </section>
-
-    <!-- Latest Blog Posts -->
-    <section class="py-16 bg-gray-100">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">From Our Blog</h2>
-        <div id="blog-preview" class="grid md:grid-cols-2 gap-8">
-          <!-- Will be filled by JavaScript -->
-          <div class="text-center py-12">
-            <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 rounded-full border-t-transparent"></div>
-            <p class="mt-4 text-gray-600">Loading posts...</p>
-          </div>
-        </div>
-        <div class="text-center mt-8">
-          <a href="/YNotHoldings/blog/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
-            View All Posts
-          </a>
-        </div>
+      <div class="text-center mt-8">
+        <a href="/YNotHoldings/blog/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+          View All Posts
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- Footer Injection -->
   <div id="footer-container" class="mt-auto"></div>
