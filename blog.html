@@ -110,7 +110,25 @@
     });
 
     function initMobileMenu() {
-      // ... (Same mobile menu code as contact.html)
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+
+      if (menuBtn) menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      });
+
+      if (overlay) overlay.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      });
     }
   </script>
 </body>
