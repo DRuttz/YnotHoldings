@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YNot Holdings - Home</title>
+  <title>Ynot Holdings - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -78,7 +78,7 @@
     
     <!-- Content -->
     <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-      <h1 class="text-5xl font-bold text-white mb-4 text-shadow-lg">YNot Holdings</h1>
+      <h1 class="text-5xl font-bold text-white mb-4 text-shadow-lg">Ynot Holdings</h1>
       <p class="text-xl text-green-100 mb-8 max-w-2xl">Bringing communities together.</p>
       <div class="flex gap-4">
         <a href="/YNotHoldings/about.html" 
@@ -104,7 +104,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
           </svg>
         </div>
-        <h3 class="text-xl font-bold mb-2 text-ynot-green">YNot Pool and Sports Hall</h3>
+        <h3 class="text-xl font-bold mb-2 text-ynot-green">Ynot Pool and Sports Hall</h3>
         <p class="text-gray-600 mb-4">Premium recreational facilities including pool and snooker tables.</p>
         <a href="/YNotHoldings/subsidiaries.html" class="text-ynot-green hover:underline font-medium">
           Learn more →
@@ -118,7 +118,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
           </svg>
         </div>
-        <h3 class="text-xl font-bold mb-2 text-ynot-green">YNot Poker League</h3>
+        <h3 class="text-xl font-bold mb-2 text-ynot-green">Ynot Poker League</h3>
         <p class="text-gray-600 mb-4">Exciting poker tournaments across Essex.</p>
         <a href="/YNotHoldings/subsidiaries.html" class="text-ynot-green hover:underline font-medium">
           Learn more →
@@ -132,8 +132,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
           </svg>
         </div>
-        <h3 class="text-xl font-bold mb-2 text-ynot-green">YNot Repairs</h3>
-        <p class="text-gray-600 mb-4">Reliable repair services for homes and businesses.</p>
+        <h3 class="text-xl font-bold mb-2 text-ynot-green">Ynot Repairs</h3>
+        <p class="text-gray-600 mb-4">Reliable repair and maintenance services catering to pool and snooker cues.</p>
         <a href="/YNotHoldings/subsidiaries.html" class="text-ynot-green hover:underline font-medium">
           Learn more →
         </a>
@@ -166,21 +166,21 @@
   <script>
     // Load Header/Footer
     document.addEventListener("DOMContentLoaded", function() {
-      fetch('/YNotHoldings/header.html')
+      fetch('/YnotHoldings/header.html')
         .then(res => res.text())
         .then(data => {
           document.getElementById('header-container').innerHTML = data;
           initMobileMenu();
         });
 
-      fetch('/YNotHoldings/footer.html')
+      fetch('/YnotHoldings/footer.html')
         .then(res => res.text())
         .then(data => {
           document.getElementById('footer-container').innerHTML = data;
         });
 
       // Load blog preview
-      fetch('/YNotHoldings/data/blog-posts.json')
+      fetch('/YnotHoldings/data/blog-posts.json')
         .then(res => res.json())
         .then(posts => {
           const latestPosts = posts
@@ -190,13 +190,13 @@
           document.getElementById('blog-preview').innerHTML = latestPosts.map(post => `
             <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-ynot-amber">
               <h3 class="text-xl font-bold mb-2 text-ynot-green">
-                <a href="/YNotHoldings/blog/post.html?id=${post.slug}" class="hover:text-ynot-amber">
+                <a href="/YnotHoldings/blog/post.html?id=${post.slug}" class="hover:text-ynot-amber">
                   ${post.title}
                 </a>
               </h3>
               <p class="text-gray-500 mb-3">${post.date}</p>
               <p class="text-gray-700 mb-4 line-clamp-2">${post.excerpt}</p>
-              <a href="/YNotHoldings/blog/post.html?id=${post.slug}" class="text-ynot-green hover:underline font-medium">
+              <a href="/YnotHoldings/blog/post.html?id=${post.slug}" class="text-ynot-green hover:underline font-medium">
                 Read more →
               </a>
             </article>
@@ -205,7 +205,7 @@
         .catch(err => {
           document.getElementById('blog-preview').innerHTML = `
             <div class="bg-red-50 p-6 rounded-lg col-span-2 border-t-4 border-red-500">
-              <p class="text-red-600">Failed to load blog posts. <a href="/YNotHoldings/blog/" class="underline">Visit blog directly</a></p>
+              <p class="text-red-600">Failed to load blog posts. <a href="/YnotHoldings/blog/" class="underline">Visit blog directly</a></p>
             </div>
           `;
         });
